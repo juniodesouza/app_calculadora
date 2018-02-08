@@ -1,0 +1,20 @@
+body {
+	background-color: #f8f8f8;
+}
+
+#login-form label{
+	margin-bottom: 2px;
+	font-weight: normal;
+}
+
+.login-panel {
+	margin-top: 5%;
+}
+
+.wrapper{
+	padding: 0px;
+}
+.center-block{
+	padding: 30px;
+	max-width: 400px;
+}
