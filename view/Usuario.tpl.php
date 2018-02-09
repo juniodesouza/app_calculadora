@@ -33,7 +33,7 @@
 			        	<a href="<?php echo APP_URL?>usuarios/">Usuários<span style="font-size:18px;" class="pull-right hidden-xs showopacity fa fa-user"></span></a>
 			        </li>
 			        <li>
-			        	<a href="<?php echo APP_URL?>relatorio/">Rel. de Operações<span style="font-size:18px;" class="pull-right hidden-xs showopacity fa fa-bar-chart"></span></a>
+			        	<a href="<?php echo APP_URL?>relatorio/">Relatório de Operações<span style="font-size:18px;" class="pull-right hidden-xs showopacity fa fa-bar-chart"></span></a>
 			        </li>
 			         <li>
 			        	<a href="<?php echo APP_URL?>sair/">Sair<span style="font-size:18px;" class="pull-right hidden-xs showopacity fa fa-power-off"></span></a>
@@ -44,11 +44,11 @@
 			</nav>
 			
 			<div class="panel panel-default">
-				<div class="panel-heading"><h3>Cadastro de Usuários</h3></div>
+				<div class="panel-heading"><h4>Cadastro de Usuários</h4></div>
 				<div class="panel-body">
 					<div class="box-body table-responsive">
 						<div class="text-right" style="margin-bottom: 10px">
-							<button class="btn btn-primary">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">
 								<i class="fa fa-plus"></i> Novo Usuário
 							</button>
 						</div>
@@ -81,6 +81,39 @@
 						</table>
 					</div>
 		 	 	</div>
+			</div>
+			<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h3 class="modal-title">Cadastrar Novo Usuário</h3>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			          <div class="form-group">
+			            <label for="usu_nome" class="col-form-label">Nome:</label>
+			            <input type="text" class="form-control" id="usu_nome">
+			          </div>
+			          <div class="form-group">
+			            <label for="usu_login" class="col-form-label">Login:</label>
+			            <input type="text" class="form-control" id="usu_login">
+			          </div>
+			          <div class="form-group">
+			            <label for="usu_senha" class="col-form-label">Senha:</label>
+			            <input type="password" class="form-control" id="usu_senha">
+			          </div>
+			          <div class="form-group">
+			            <label for="usu_senha_2" class="col-form-label">Confirmação de Senha:</label>
+			            <input type="password" class="form-control" id="usu_senha_2">
+			          </div>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+			        <button type="button" class="btn btn-primary">Cadastrar</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 		</div>
 	</body>
