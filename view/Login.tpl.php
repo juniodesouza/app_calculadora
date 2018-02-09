@@ -20,6 +20,12 @@
 					<div class="panel-body">
 						<form method="post" role="form" id="login-form">
 							<fieldset>
+								<?php if(defined("ERROR_LOGIN") && ERROR_LOGIN==TRUE){?>
+									<div class="alert alert-danger">
+										<i class="fa fa-exclamation-circle"></i> Usuário ou senha incorretos.
+										<button data-dismiss="alert" class="close" type="button">×</button>
+									</div>
+								<?php } ?>
 								<div class="form-group">
 									<label for="login">Usuário</label>
 									<div class="input-group">

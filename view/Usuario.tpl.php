@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="<?php echo APP_URL?>view/css/usuario.css">
 		<script type="text/javascript" src="<?php echo APP_URL?>view/javascript/jquery.min.js"></script>
 		<script type="text/javascript" src="<?php echo APP_URL?>view/javascript/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?php echo APP_URL?>view/javascript/usuario.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -57,27 +58,18 @@
 								<th width="75px">Código</th>
 								<th>Nome</th>
 								<th>Login</th>
-								<th align="center" width="5%">Ações</th>
+								<th align="center" width="5%">Excluir</th>
 							</tr>
-							<tr>
-								<td rel="id_usuario" class="">5</td>
-								<td rel="nome">Amanda</td>
-								<td rel="login">amanda</td>
-								<td align="center">
-									<table>
-										<tbody>
-											<tr>
-												<td align="center">
-													<a class="editar" href="#"> <i class="fa fa-fw fa-edit" title="Editar"></i></a>
-												</td>
-												<td align="center">
-													<a class="delete" href="#"> <i class="fa fa-fw fa-trash-o" title="Excluir"></i></a>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
+							<?php foreach (Usuario::listAll() as $usuario) { ?>
+								<tr>
+									<td><?php echo $usuario["usu_id"]?></td>
+									<td><?php echo $usuario["usu_nome"]?></td>
+									<td><?php echo $usuario["usu_login"]?></td>
+									<td align="center">
+										<a class="delete" href="<?php echo $usuario["usu_id"]?>"> <i class="fa fa-fw fa-trash-o" title="Excluir"></i></a>
+									</td>
+								</tr>
+							<?php } ?>
 						</table>
 					</div>
 		 	 	</div>
@@ -89,28 +81,28 @@
 			        <h3 class="modal-title">Cadastrar Novo Usuário</h3>
 			      </div>
 			      <div class="modal-body">
-			        <form>
+			        <form method="post" role="form" id="usuario-form">
 			          <div class="form-group">
-			            <label for="usu_nome" class="col-form-label">Nome:</label>
+			            <label for="usu_nome" class="control-label">Nome:</label>
 			            <input type="text" class="form-control" id="usu_nome">
 			          </div>
 			          <div class="form-group">
-			            <label for="usu_login" class="col-form-label">Login:</label>
+			            <label for="usu_login" class="control-label">Login:</label>
 			            <input type="text" class="form-control" id="usu_login">
 			          </div>
 			          <div class="form-group">
-			            <label for="usu_senha" class="col-form-label">Senha:</label>
+			            <label for="usu_senha" class="control-label">Senha:</label>
 			            <input type="password" class="form-control" id="usu_senha">
 			          </div>
 			          <div class="form-group">
-			            <label for="usu_senha_2" class="col-form-label">Confirmação de Senha:</label>
+			            <label for="usu_senha_2" class="control-label">Confirmação de Senha:</label>
 			            <input type="password" class="form-control" id="usu_senha_2">
 			          </div>
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-			        <button type="button" class="btn btn-primary">Cadastrar</button>
+			        <button type="button" class="btn btn-danger" id="btnCancelar" data-dismiss="modal">Cancelar</button>
+			        <button type="button" class="btn btn-primary" id="btnNovoUsuario">Cadastrar</button>
 			      </div>
 			    </div>
 			  </div>

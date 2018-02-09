@@ -60,8 +60,32 @@ class Calculadora{
 		// Volta o padrão BR
 		$result = str_replace(".", ",", $result);
 		
+		// Salva o historico
+		$this->salvarHistorico(str_replace("√", "raiz_quadrada:", $_POST["expressao"]));
+		
 		// Retorno
 		echo json_encode(array("status"=>true, "result"=>$result));
+	}
+	
+	public function salvarHistorico($operacao){
+		
+		// Conexão com o banco de dados
+		$conex = Conexao::getConnection();
+		
+		// Monta o Sql
+		$sql = " INSERT INTO operacoes(ope_data,ope_calculo,usu_id) VALUES (?,?,?)";
+			
+		// Prepara a query
+		$stm = $conex->prepare($sql);
+			
+		// Seta os valores do parametro
+		$stm->bindValue(1, date("Y/m/d"));
+		$stm->bindValue(2, $operacao);
+		$stm->bindValue(3, $_SESSION["usu_id"]);
+		
+		// Executa a query
+		$stm->execute();
+		
 	}
 	
 	public static function raiz_quadrada($valor){

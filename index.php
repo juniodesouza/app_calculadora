@@ -1,12 +1,18 @@
 <?php
 
 require_once "config/Settings.php";
+require_once 'controller/Conexao.class.php';
 
 class AppCalculadora{
 	
 	public $params=array();
 	
 	public function __construct(){
+		
+		// Inicia a sessão
+		if(!isset($_SESSION))@session_start();
+		
+		// Inicia a aplicação
 		$this->start();
 	}
 	
@@ -15,21 +21,49 @@ class AppCalculadora{
 	 */
 	private function start(){
 		
+		// Recupera os parametros da URL
 		$this->getParams();
 		
+		// Verifica qual tela acessar
 		switch ($this->getParamURL(1)){
-			
-			case "usuarios":
+			case "usuarios":{
+				$this->validarSessao();
 				require_once DIR_APP."controller/Usuario.php";
-			break;
+			}break;
 			
-			case "calculadora":
+			case "calculadora":{
+				$this->validarSessao();
 				require_once DIR_APP."controller/Calculadora.php";
-			break;
+			}break;
+			
+			case "sair":{
+				
+				// Limpa a sessão
+				$_SESSION = array();
+				
+				// Destroy a sessãoo
+				session_destroy();
+				
+				// Redireciona para a tela de login
+				header("Location: ".APP_URL);
+				exit();
+				
+			}break;
 			
 			default:
 				require_once DIR_APP."controller/Login.php";
 			break;
+		}
+	}
+	
+	/**
+	 * Validação para ver se o usuario esta logado
+	 */
+	public function validarSessao(){
+		
+		if(!isset($_SESSION["usu_id"])){
+			header("Location: ".APP_URL);
+			exit();
 		}
 	}
 	
