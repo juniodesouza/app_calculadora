@@ -36,6 +36,11 @@ class AppCalculadora{
 				require_once DIR_APP."controller/Calculadora.php";
 			}break;
 			
+			case "relatorio":{
+				$this->validarSessao();
+				require_once DIR_APP."controller/Relatorio.php";
+			}break;
+			
 			case "sair":{
 				
 				// Limpa a sessão
